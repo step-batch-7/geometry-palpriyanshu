@@ -1,11 +1,15 @@
 class Line {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor(endA, endB) {
+    this.line = { endA, endB };
   }
 
   toString() {
-    return `Line { x: ${this.x}, y: ${this.y} }`;
+    const x1 = this.line.endA.x;
+    const y1 = this.line.endA.y;
+    const x2 = this.line.endB.x;
+    const y2 = this.line.endB.y;
+
+    return `Line (${x1},${y1})--------(${x2},${y2})`;
   }
 
   isEqualTo(otherLine) {
