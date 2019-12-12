@@ -15,4 +15,10 @@ describe("isEqualTo", function() {
     const b = new Line(2, 3);
     assert.ok(a.isEqualTo(b));
   });
+
+  it("should give false when two Strings are not equal", function() {
+    const a = new Line(2, 3);
+    const b = new Line(3, 4);
+    assert.ok(!a.isEqualTo(b));
+  });
 });
