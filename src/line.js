@@ -25,9 +25,9 @@ class Line {
   }
 
   get length() {
-    let x = (this.endA.x - this.endB.x) ** 2;
-    let y = (this.endA.y - this.endB.y) ** 2;
-    return Math.sqrt(x - y);
+    let dx = (this.endA.x - this.endB.x) ** 2;
+    let dy = (this.endA.y - this.endB.y) ** 2;
+    return Math.sqrt(dx - dy);
   }
 
   get slope() {
@@ -35,11 +35,7 @@ class Line {
   }
 
   parallel(other) {
-    const slopeOfThisLine =
-      (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
-    const slopeOfOtherLine =
-      (other.endB.y - other.endA.y) / (other.endB.x - other.endA.x);
-    return slopeOfOtherLine == slopeOfThisLine;
+    return this.slope == other.slope;
   }
 }
 
