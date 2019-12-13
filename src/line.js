@@ -1,6 +1,6 @@
-const areEqualCoordinates = function(coordinate1, coordinate2) {
-  const abscissa = coordinate1.x == coordinate2.x;
-  const ordinate = coordinate1.y == coordinate2.y;
+const areEqualPoints = function(point1, point2) {
+  const abscissa = point1.x === point2.x;
+  const ordinate = point1.y === point2.y;
   return abscissa && ordinate;
 };
 
@@ -11,14 +11,15 @@ class Line {
   }
 
   toString() {
-    return `Line (${this.endA.x},${this.endA.y})-----(${this.endB.x},${this.endB.y})`;
+    return `Line (${this.endA.x},${this.endA.y})-(${this.endB.x},${this.endB.y})`;
   }
 
   isEqual(otherLine) {
-    const isLineInstance = otherLine instanceof Line;
-    const isEqualEndA = areEqualCoordinates(this.endA, otherLine.endA);
-    const isEqualEndB = areEqualCoordinates(this.endB, otherLine.endB);
-    return isLineInstance && isEqualEndA && isEqualEndB;
+    return (
+      otherLine instanceof Line &&
+      areEqualPoints(this.endA, otherLine.endA) &&
+      areEqualPoints(this.endB, otherLine.endB)
+    );
   }
 }
 
