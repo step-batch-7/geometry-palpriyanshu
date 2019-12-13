@@ -27,7 +27,7 @@ class Line {
   get length() {
     const dx = this.endA.x - this.endB.x;
     const dy = this.endA.y - this.endB.y;
-    return Math.sqrt(dx ** 2 - dy ** 2);
+    return Math.hypot(dx, dy);
   }
 
   get slope() {

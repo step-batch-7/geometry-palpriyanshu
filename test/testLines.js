@@ -32,9 +32,9 @@ describe("Line", function() {
 
   describe("length", function() {
     it("should give the length of line when two distinct end points are given", function() {
-      const line1 = new Line({ x: 6, y: 5 }, { x: 1, y: 1 });
+      const line1 = new Line({ x: 6, y: 4 }, { x: 2, y: 1 });
       const actual = line1.length;
-      assert.strictEqual(actual, 3);
+      assert.strictEqual(actual, 5);
     });
 
     it("should give the length of line '0' when both end points are same", function() {
@@ -44,9 +44,9 @@ describe("Line", function() {
     });
 
     it("should give the length of line when both end points are floating points", function() {
-      const line1 = new Line({ x: 6.0, y: 5.0 }, { x: 1.0, y: 1.0 });
+      const line1 = new Line({ x: 6.0, y: 4.0 }, { x: 1.0, y: 1.0 });
       const actual = line1.length;
-      assert.strictEqual(actual, 3.0);
+      assert.approximately(actual, 5.0, 1);
     });
   });
 
