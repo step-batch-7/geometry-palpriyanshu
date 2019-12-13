@@ -25,9 +25,9 @@ class Line {
   }
 
   get length() {
-    let dx = (this.endA.x - this.endB.x) ** 2;
-    let dy = (this.endA.y - this.endB.y) ** 2;
-    return Math.sqrt(dx - dy);
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    return Math.sqrt(dx ** 2 - dy ** 2);
   }
 
   get slope() {
