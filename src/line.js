@@ -6,16 +6,15 @@ const areEqualCoordinates = function(coordinate1, coordinate2) {
 
 class Line {
   constructor(endA, endB) {
-    [this.endA, this.endB] = [endA, endB];
+    this.endA = { x: endA.x, y: endA.y };
+    this.endB = { x: endB.x, y: endB.y };
   }
 
   toString() {
-    return `Line (${this.endA.x},${+this.endA.y})-----(${this.endB.x},${
-      this.endB.y
-    })`;
+    return `Line (${this.endA.x},${this.endA.y})-----(${this.endB.x},${this.endB.y})`;
   }
 
-  isEqualTo(otherLine) {
+  isEqual(otherLine) {
     const isLineInstance = otherLine instanceof Line;
     const isEqualEndA = areEqualCoordinates(this.endA, otherLine.endA);
     const isEqualEndB = areEqualCoordinates(this.endB, otherLine.endB);
