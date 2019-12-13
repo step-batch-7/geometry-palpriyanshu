@@ -29,4 +29,12 @@ describe("Line", function() {
       assert.ok(!line1.isEqual(line2));
     });
   });
+
+  describe("length", function() {
+    it("should give the length of line when two distinct end points are given", function() {
+      const line1 = new Line({ x: 6, y: 5 }, { x: 1, y: 1 });
+      const actual = line1.length;
+      assert.strictEqual(actual, 3);
+    });
+  });
 });

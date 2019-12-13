@@ -1,6 +1,6 @@
 const areEqualPoints = function(point1, point2) {
-  const areXCoordinatesEqual = point1.x == point2.x;
-  const areYCoordinatesEqual = point1.y == point2.y;
+  const areXCoordinatesEqual = point1.x === point2.x;
+  const areYCoordinatesEqual = point1.y === point2.y;
   return areXCoordinatesEqual && areYCoordinatesEqual;
 };
 
@@ -22,6 +22,12 @@ class Line {
       areEqualPoints(this.endA, other.endA) &&
       areEqualPoints(this.endB, other.endB)
     );
+  }
+
+  get length() {
+    let x = (this.endA.x - this.endB.x) ** 2;
+    let y = (this.endA.y - this.endB.y) ** 2;
+    return Math.sqrt(x - y);
   }
 }
 
