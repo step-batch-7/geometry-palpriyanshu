@@ -51,18 +51,25 @@ describe("Line", function() {
   });
 
   describe("parallel", function() {
-    it("should give true when two lines are parallel", function() {
+    it("should validate when two lines are parallel", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 4, y: 4 }, { x: 2, y: 2 });
       const actual = line1.parallel(line2);
       assert.ok(actual);
     });
 
-    it("should give false when two lines are not parallel", function() {
+    it("should invalidate when two lines are not parallel", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: -4, y: 4 }, { x: -2, y: 2 });
       const actual = line1.parallel(line2);
       assert.ok(!actual);
+    });
+  });
+
+  describe("slope", function() {
+    it("should give slope of a line", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
+      assert.strictEqual(line1.slope, 1);
     });
   });
 });

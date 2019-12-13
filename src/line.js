@@ -30,6 +30,10 @@ class Line {
     return Math.sqrt(x - y);
   }
 
+  get slope() {
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+  }
+
   parallel(other) {
     const slopeOfThisLine =
       (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
