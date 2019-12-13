@@ -29,6 +29,14 @@ class Line {
     let y = (this.endA.y - this.endB.y) ** 2;
     return Math.sqrt(x - y);
   }
+
+  parallel(other) {
+    const slopeOfThisLine =
+      (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    const slopeOfOtherLine =
+      (other.endB.y - other.endA.y) / (other.endB.x - other.endA.x);
+    return slopeOfOtherLine == slopeOfThisLine;
+  }
 }
 
 module.exports = Line;

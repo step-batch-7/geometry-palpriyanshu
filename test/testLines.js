@@ -1,5 +1,5 @@
 const Line = require("../src/line.js");
-assert = require("assert");
+const assert = require("chai").assert;
 
 describe("Line", function() {
   describe("toString", function() {
@@ -35,6 +35,34 @@ describe("Line", function() {
       const line1 = new Line({ x: 6, y: 5 }, { x: 1, y: 1 });
       const actual = line1.length;
       assert.strictEqual(actual, 3);
+    });
+
+    it("should give the length of line '0' when both end points are same", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 1, y: 1 });
+      const actual = line1.length;
+      assert.strictEqual(actual, 0);
+    });
+
+    it("should give the length of line when both end points are floating points", function() {
+      const line1 = new Line({ x: 6.0, y: 5.0 }, { x: 1.0, y: 1.0 });
+      const actual = line1.length;
+      assert.strictEqual(actual, 3.0);
+    });
+  });
+
+  describe("parallel", function() {
+    it("should give true when two lines are parallel", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
+      const line2 = new Line({ x: 4, y: 4 }, { x: 2, y: 2 });
+      const actual = line1.parallel(line2);
+      assert.ok(actual);
+    });
+
+    it("should give false when two lines are not parallel", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
+      const line2 = new Line({ x: -4, y: 4 }, { x: -2, y: 2 });
+      const actual = line1.parallel(line2);
+      assert.ok(!actual);
     });
   });
 });
