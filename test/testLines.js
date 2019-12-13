@@ -25,7 +25,7 @@ describe("Line", function() {
 
     it("should invalidate when two objects are not instance of Line", function() {
       const line1 = new Line({ x: 2, y: 4 }, { x: 3, y: 5 });
-      const line2 = `Line ${{ endA: { x: 2, y: 4 }, endB: { x: 3, y: 4 } }}`;
+      const line2 = ``;
       assert.ok(!line1.isEqual(line2));
     });
   });
