@@ -67,9 +67,29 @@ describe("Line", function() {
   });
 
   describe("slope", function() {
-    it("should give slope of a line", function() {
+    it("should give positive slope of a line when change in both ordinates and abscissa is positive", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       assert.strictEqual(line1.slope, 1);
+    });
+
+    it("should give negative slope of a line when either change in ordinates or change in abscissa is negative", function() {
+      const line1 = new Line({ x: 8, y: 3 }, { x: 6, y: 5 });
+      assert.strictEqual(line1.slope, -1);
+    });
+
+    it("should give 0 for a horizontal line", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 5 });
+      assert.strictEqual(line1.slope, -0);
+    });
+
+    it("should give infinity for a vertical line", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 8, y: 3 });
+      assert.strictEqual(line1.slope, -Infinity);
+    });
+
+    it("should give not a number when both end points are same", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 8, y: 5 });
+      assert.isNaN(line1.slope);
     });
   });
 });
