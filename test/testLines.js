@@ -165,7 +165,7 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const line1 = { endA: { x: 1, y: 1 }, endB: { x: 2, y: 2 } };
       const line2 = { endA: { x: 2, y: 2 }, endB: { x: 3, y: 3 } };
-      const expected = [ line1, line2 ];
+      const expected = [line1, line2];
       assert.deepStrictEqual(line.split(), expected);
     });
   });

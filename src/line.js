@@ -4,6 +4,14 @@ const areEqualPoints = function(point1, point2) {
   return areXCoordinatesEqual && areYCoordinatesEqual;
 };
 
+const hasAbscissa = function(x, endA, endB) {
+  return (x > endA.x && x < endB.x) || (x > endB.x && x < endA.x);
+};
+
+const hasOrdinate = function(y, endA, endB) {
+  return (y > endA.y && y < endB.y) || (y > endB.y && y < endA.y);
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -42,14 +50,14 @@ class Line {
   }
 
   findX(y) {
-    if (y > this.endA.y && y < this.endB.y) {
+    if (hasOrdinate(y, this.endA, this.endB)) {
       return (y - this.endA.y) / this.slope + this.endA.x;
     }
     return NaN;
   }
 
   findY(x) {
-    if (x > this.endA.x && x < this.endB.x) {
+    if (hasAbscissa(x, this.endA, this.endB)) {
       return (x - this.endA.x) * this.slope + this.endA.y;
     }
     return NaN;
