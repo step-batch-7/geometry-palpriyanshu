@@ -177,5 +177,17 @@ describe("Line", function() {
       const point = new Point(2, 2);
       assert.ok(line.hasPoint(point));
     });
+
+    it("should inValidate when point does not lies on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(5, 5);
+      assert.notOk(line.hasPoint(point));
+    });
+
+    it("should inValidate when point is not a instance of class Point", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = { x: 2, y: 2 };
+      assert.notOk(line.hasPoint(point));
+    });
   });
 });
