@@ -15,5 +15,11 @@ describe("Point", function() {
       const actual = point.visit((x, y) => x + y);
       assert.strictEqual(actual, 5);
     });
+
+    it("should visit to the mul function when mul function is given", function() {
+      const point = new Point(2, 3);
+      const actual = point.visit((x, y) => x * y);
+      assert.strictEqual(actual, 6);
+    });
   });
 });
