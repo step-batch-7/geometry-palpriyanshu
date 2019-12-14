@@ -6,12 +6,10 @@ const areEqualPoints = function(point1, point2) {
   return areXCoordinatesEqual && areYCoordinatesEqual;
 };
 
-const hasAbscissa = function(x, endA, endB) {
-  return (x > endA.x && x < endB.x) || (x > endB.x && x < endA.x);
-};
-
-const hasOrdinate = function(y, endA, endB) {
-  return (y > endA.y && y < endB.y) || (y > endB.y && y < endA.y);
+const hasCoordinate = function(coordinate, A, B) {
+  return (
+    (coordinate >= A && coordinate <= B) || (coordinate >= B && coordinate <= A)
+  );
 };
 
 class Line {
@@ -52,14 +50,14 @@ class Line {
   }
 
   findX(y) {
-    if (hasOrdinate(y, this.endA, this.endB)) {
+    if (hasCoordinate(y, this.endA.y, this.endB.y)) {
       return (y - this.endA.y) / this.slope + this.endA.x;
     }
     return NaN;
   }
 
   findY(x) {
-    if (hasAbscissa(x, this.endA, this.endB)) {
+    if (hasCoordinate(x, this.endA.x, this.endB.x)) {
       return (x - this.endA.x) * this.slope + this.endA.y;
     }
     return NaN;
@@ -76,8 +74,8 @@ class Line {
   hasPoint(other) {
     if (!(other instanceof Point)) return false;
     return (
-      hasOrdinate(other.y, this.endA, this.endB) &&
-      hasAbscissa(other.x, this.endA, this.endB)
+      hasCoordinate(other.y, this.endA.y, this.endB.y) &&
+      hasCoordinate(other.x, this.endA.x, this.endB.x)
     );
   }
 }

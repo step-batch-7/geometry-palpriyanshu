@@ -75,7 +75,7 @@ describe("Line", function() {
       assert.notOk(actual);
     });
 
-    it("should invalidate for two lines with same ordinates", function() {
+    it("should invalidate for two collinear", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 12, y: 5 }, { x: 10, y: 3 });
       const actual = line1.isParallelTo(line2);
