@@ -8,4 +8,12 @@ describe("Point", function() {
       assert.strictEqual(point.toString(), "[Point @(2,3)]");
     });
   });
+
+  describe("visit", function() {
+    it("should visit to the add function when add function is given", function() {
+      const point = new Point(2, 3);
+      const actual = point.visit((x, y) => x + y);
+      assert.strictEqual(actual, 5);
+    });
+  });
 });
