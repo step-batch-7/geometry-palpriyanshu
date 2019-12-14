@@ -10,16 +10,24 @@ describe("Point", function() {
   });
 
   describe("visit", function() {
-    it("should visit to the add function when add function is given", function() {
+    it("should visit to the add function when add function reference is given", function() {
       const point = new Point(2, 3);
       const actual = point.visit((x, y) => x + y);
       assert.strictEqual(actual, 5);
     });
 
-    it("should visit to the mul function when mul function is given", function() {
+    it("should visit to the mul function when mul function reference is given", function() {
       const point = new Point(2, 3);
       const actual = point.visit((x, y) => x * y);
       assert.strictEqual(actual, 6);
+    });
+  });
+
+  describe("isEqualTo", function() {
+    it("should validate when two points are equal", function() {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(2, 3);
+      assert.ok(point1.isEqualTo(point2));
     });
   });
 });
