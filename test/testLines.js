@@ -132,4 +132,11 @@ describe("Line", function() {
       assert.strictEqual(line.findX(2), 2);
     });
   });
+
+  describe("findY", function() {
+    it("should give the Y-coordinate of the Line for given X-coordinate", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.strictEqual(line.findY(2), 2);
+    });
+  });
 });

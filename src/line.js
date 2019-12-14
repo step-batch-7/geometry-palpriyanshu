@@ -44,6 +44,10 @@ class Line {
   findX(y) {
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
+
+  findY(x) {
+    return (x - this.endA.x) / this.slope + this.endA.y;
+  }
 }
 
 module.exports = Line;
