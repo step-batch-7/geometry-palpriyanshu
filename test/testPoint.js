@@ -29,5 +29,11 @@ describe("Point", function() {
       const point2 = new Point(2, 3);
       assert.ok(point1.isEqualTo(point2));
     });
+
+    it("should invalidate when two points have different ordinates and abscissa ", function() {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(3, 4);
+      assert.notOk(point1.isEqualTo(point2));
+    });
   });
 });
