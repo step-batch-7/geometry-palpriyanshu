@@ -6,7 +6,7 @@ describe("Line", function() {
     it("should gives string representation of the Line", function() {
       const line = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line.toString();
-      assert.deepStrictEqual(actual, `Line (1,2)-(3,4)`);
+      assert.deepStrictEqual(actual, `[Line (1,2) to (3,4)]`);
     });
   });
 
