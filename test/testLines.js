@@ -125,4 +125,11 @@ describe("Line", function() {
       assert.isNaN(line.slope);
     });
   });
+
+  describe("findX", function() {
+    it("should give the X-coordinate of the Line for given Y-coordinate", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.strictEqual(line.findX(2), 2);
+    });
+  });
 });

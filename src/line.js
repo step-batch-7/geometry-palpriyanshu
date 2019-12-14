@@ -40,6 +40,10 @@ class Line {
     }
     return this.endA.y !== other.endA.y && this.slope == other.slope;
   }
+
+  findX(y) {
+    return (y - this.endA.y) / this.slope + this.endA.x;
+  }
 }
 
 module.exports = Line;
