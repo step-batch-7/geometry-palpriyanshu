@@ -35,6 +35,9 @@ class Line {
   }
 
   parallel(other) {
+    if (!(other instanceof Line)) {
+      return false;
+    }
     return this.endA.y !== other.endA.y && this.slope == other.slope;
   }
 }
