@@ -46,7 +46,7 @@ class Line {
   }
 
   findY(x) {
-    return (x - this.endA.x) / this.slope + this.endA.y;
+    return (x - this.endA.x) * this.slope + this.endA.y;
   }
 }
 
