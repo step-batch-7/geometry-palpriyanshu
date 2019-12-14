@@ -1,3 +1,5 @@
+const Point = require("../src/point.js");
+
 const areEqualPoints = function(point1, point2) {
   const areXCoordinatesEqual = point1.x === point2.x;
   const areYCoordinatesEqual = point1.y === point2.y;
@@ -69,6 +71,14 @@ class Line {
     const line1 = new Line(this.endA, { x: midOfX, y: midOfY });
     const line2 = new Line({ x: midOfX, y: midOfY }, this.endB);
     return [line1, line2];
+  }
+
+  hasPoint(other) {
+    if (!(other instanceof Point)) return false;
+    return (
+      hasOrdinate(other.y, this.endA, this.endB) &&
+      hasAbscissa(other.x, this.endA, this.endB)
+    );
   }
 }
 
