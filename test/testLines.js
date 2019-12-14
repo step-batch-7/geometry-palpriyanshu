@@ -136,6 +136,11 @@ describe("Line", function() {
       const line = new Line({ x: 4, y: 4 }, { x: 4, y: 4 });
       assert.isNaN(line.findX(2));
     });
+
+    it("should give NaN if given point is outside the line Segment", function() {
+      const line = new Line({ x: 4, y: 4 }, { x: 6, y: 6 });
+      assert.isNaN(line.findX(2));
+    });
   });
 
   describe("findY", function() {
@@ -146,6 +151,11 @@ describe("Line", function() {
 
     it("should give NaN if both endPoints are same", function() {
       const line = new Line({ x: 4, y: 4 }, { x: 4, y: 4 });
+      assert.isNaN(line.findY(2));
+    });
+
+    it("should give NaN if given point is outside the line Segment", function() {
+      const line = new Line({ x: 4, y: 4 }, { x: 6, y: 6 });
       assert.isNaN(line.findY(2));
     });
   });

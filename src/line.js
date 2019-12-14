@@ -42,11 +42,17 @@ class Line {
   }
 
   findX(y) {
-    return (y - this.endA.y) / this.slope + this.endA.x;
+    if (y > this.endA.y && y < this.endB.y) {
+      return (y - this.endA.y) / this.slope + this.endA.x;
+    }
+    return NaN;
   }
 
   findY(x) {
-    return (x - this.endA.x) * this.slope + this.endA.y;
+    if (x > this.endA.x && x < this.endB.x) {
+      return (x - this.endA.x) * this.slope + this.endA.y;
+    }
+    return NaN;
   }
 }
 
