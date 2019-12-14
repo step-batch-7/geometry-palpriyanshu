@@ -131,12 +131,22 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.strictEqual(line.findX(2), 2);
     });
+
+    it("should give NaN if both endPoints are same", function() {
+      const line = new Line({ x: 4, y: 4 }, { x: 4, y: 4 });
+      assert.isNaN(line.findX(2));
+    });
   });
 
   describe("findY", function() {
     it("should give the Y-coordinate of the Line for given X-coordinate", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.strictEqual(line.findY(2), 2);
+    });
+
+    it("should give NaN if both endPoints are same", function() {
+      const line = new Line({ x: 4, y: 4 }, { x: 4, y: 4 });
+      assert.isNaN(line.findY(2));
     });
   });
 });
