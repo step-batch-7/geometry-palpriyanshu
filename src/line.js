@@ -54,6 +54,14 @@ class Line {
     }
     return NaN;
   }
+
+  split() {
+    const midOfX = (this.endA.x + this.endB.x) / 2;
+    const midOfY = (this.endA.y + this.endB.y) / 2;
+    const line1 = new Line(this.endA, { x: midOfX, y: midOfY });
+    const line2 = new Line({ x: midOfX, y: midOfY }, this.endB);
+    return [line1, line2];
+  }
 }
 
 module.exports = Line;
