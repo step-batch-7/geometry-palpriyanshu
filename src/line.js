@@ -6,9 +6,10 @@ const areEqualPoints = function(point1, point2) {
   return areXCoordinatesEqual && areYCoordinatesEqual;
 };
 
-const hasCoordinate = function(coordinate, A, B) {
+const hasCoordinate = function(coordinate, endA, endB) {
   return (
-    (coordinate >= A && coordinate <= B) || (coordinate >= B && coordinate <= A)
+    (coordinate >= endA && coordinate <= endB) ||
+    (coordinate >= endB && coordinate <= endA)
   );
 };
 
@@ -73,9 +74,12 @@ class Line {
 
   hasPoint(other) {
     if (!(other instanceof Point)) return false;
+    const ordinateEqn = (other.y - this.endA.y) / this.endB.y - this.endA.y;
+    const abscissaEqn = (other.x - this.endA.x) / this.endB.x - this.endA.x;
     return (
+      hasCoordinate(other.x, this.endA.x, this.endB.x) &&
       hasCoordinate(other.y, this.endA.y, this.endB.y) &&
-      hasCoordinate(other.x, this.endA.x, this.endB.x)
+      ordinateEqn === abscissaEqn
     );
   }
 }
