@@ -34,7 +34,7 @@ class Line {
     return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
 
-  parallel(other) {
+  isParallelTo(other) {
     if (!(other instanceof Line)) {
       return false;
     }

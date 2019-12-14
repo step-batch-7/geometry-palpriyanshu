@@ -52,45 +52,45 @@ describe("Line", function() {
     });
   });
 
-  describe("parallel", function() {
+  describe("isParallelTo", function() {
     it("should validate when two lines are parallel", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 4, y: 4 }, { x: 2, y: 2 });
-      const actual = line1.parallel(line2);
+      const actual = line1.isParallelTo(line2);
       assert.ok(actual);
     });
 
-    it("should invalidate when two lines are not parallel", function() {
+    it("should invalidate when two lines are not isParallelTo", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: -4, y: 4 }, { x: -2, y: 2 });
-      const actual = line1.parallel(line2);
+      const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
 
     it("should invalidate for two coincident lines ", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
-      const actual = line1.parallel(line2);
+      const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
 
     it("should invalidate for two lines with same ordinates", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 12, y: 5 }, { x: 10, y: 3 });
-      const actual = line1.parallel(line2);
+      const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
 
     it("should invalidate if any of lines is not the instances of class Line", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = { endA: { x: 9, y: 1 }, endB: { x: 10, y: 5 } };
-      assert.isFalse(line1.parallel(line2));
+      assert.isFalse(line1.isParallelTo(line2));
     });
 
     it("should invalidate if two lines with of length 0 are compared", function() {
       const line1 = new Line({ x: 1, y: 6 }, { x: 1, y: 6 });
       const line2 = new Line({ x: -2, y: 10 }, { x: -2, y: 10 });
-      assert.notOk(line1.parallel(line2));
+      assert.notOk(line1.isParallelTo(line2));
     });
   });
 
