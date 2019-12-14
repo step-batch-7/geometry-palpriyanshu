@@ -17,6 +17,10 @@ class Point {
     }
     return this.x === other.x && this.y === other.y;
   }
+
+  clone() {
+    return new Point(this.x, this.y);
+  }
 }
 
 module.exports = Point;
