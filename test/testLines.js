@@ -162,10 +162,18 @@ describe("Line", function() {
   });
 
   describe("split", function() {
-    it("should gives 2 lines split exactly at the centre of line ", function() {
+    it("should split a line in two exactly at the centre of line ", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const line1 = { endA: { x: 1, y: 1 }, endB: { x: 2, y: 2 } };
       const line2 = { endA: { x: 2, y: 2 }, endB: { x: 3, y: 3 } };
+      const expected = [line1, line2];
+      assert.deepStrictEqual(line.split(), expected);
+    });
+
+    it("should split lines of 0 length into two line of 0 length", function() {
+      const line = new Line({ x: 1, y: 3 }, { x: 1, y: 3 });
+      const line1 = { endA: { x: 1, y: 3 }, endB: { x: 1, y: 3 } };
+      const line2 = { endA: { x: 1, y: 3 }, endB: { x: 1, y: 3 } };
       const expected = [line1, line2];
       assert.deepStrictEqual(line.split(), expected);
     });
@@ -180,6 +188,12 @@ describe("Line", function() {
 
     it("should inValidate when point does not lies on the line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(2, 3);
+      assert.notOk(line.hasPoint(point));
+    });
+
+    it("should inValidate when point are outside line segment", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(5, 5);
       assert.notOk(line.hasPoint(point));
     });
@@ -187,12 +201,6 @@ describe("Line", function() {
     it("should inValidate when point is not a instance of class Point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = { x: 2, y: 2 };
-      assert.notOk(line.hasPoint(point));
-    });
-
-    it("should inValidate when point is not a instance of class Point", function() {
-      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      const point = new Point(2, 3);
       assert.notOk(line.hasPoint(point));
     });
   });

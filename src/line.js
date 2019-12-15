@@ -6,11 +6,9 @@ const areEqualPoints = function(point1, point2) {
   return areXCoordinatesEqual && areYCoordinatesEqual;
 };
 
-const hasCoordinate = function(coordinate, endA, endB) {
-  return (
-    (coordinate >= endA && coordinate <= endB) ||
-    (coordinate >= endB && coordinate <= endA)
-  );
+const isCoordinateInRange = function(coordinate, range) {
+  [start, end] = range.sort();
+  return coordinate >= start && coordinate <= end;
 };
 
 class Line {
@@ -51,35 +49,33 @@ class Line {
   }
 
   findX(y) {
-    if (hasCoordinate(y, this.endA.y, this.endB.y)) {
-      return (y - this.endA.y) / this.slope + this.endA.x;
+    if (!isCoordinateInRange(y, [this.endA.y, this.endB.y])) {
+      return NaN;
     }
-    return NaN;
+    return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (hasCoordinate(x, this.endA.x, this.endB.x)) {
-      return (x - this.endA.x) * this.slope + this.endA.y;
+    if (!isCoordinateInRange(x, [this.endA.x, this.endB.x])) {
+      return NaN;
     }
-    return NaN;
+    return (x - this.endA.x) * this.slope + this.endA.y;
   }
 
   split() {
-    const midOfX = (this.endA.x + this.endB.x) / 2;
-    const midOfY = (this.endA.y + this.endB.y) / 2;
-    const line1 = new Line(this.endA, { x: midOfX, y: midOfY });
-    const line2 = new Line({ x: midOfX, y: midOfY }, this.endB);
+    const midPoint = {
+      x: (this.endA.x + this.endB.x) / 2,
+      y: (this.endA.y + this.endB.y) / 2
+    };
+    const line1 = new Line(this.endA, midPoint);
+    const line2 = new Line(midPoint, this.endB);
     return [line1, line2];
   }
 
   hasPoint(other) {
-    if (!(other instanceof Point)) return false;
-    const ordinateEqn = (other.y - this.endA.y) / this.endB.y - this.endA.y;
-    const abscissaEqn = (other.x - this.endA.x) / this.endB.x - this.endA.x;
     return (
-      hasCoordinate(other.x, this.endA.x, this.endB.x) &&
-      hasCoordinate(other.y, this.endA.y, this.endB.y) &&
-      ordinateEqn === abscissaEqn
+      other instanceof Point &&
+      (other.x === this.findX(other.y) || other.y === this.findY(other.x))
     );
   }
 }
