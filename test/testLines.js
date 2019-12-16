@@ -247,4 +247,12 @@ describe("Line", function() {
       assert.notOk(line.hasPoint(point));
     });
   });
+
+  describe("findPointFromStart", function() {
+    it("should give point from start of a line when distance is given ", function() {
+      const line = new Line({ x: 6, y: 2 }, { x: 4, y: 1 });
+      assert.approximately(line.findPointFromStart(2)[0], 4, 1);
+      assert.approximately(line.findPointFromStart(2)[1], 2, 1);
+    });
+  });
 });

@@ -77,4 +77,6 @@ describe("Point", function() {
       assert.isNaN(point1.findDistanceTo(point2));
     });
   });
+
+  
 });

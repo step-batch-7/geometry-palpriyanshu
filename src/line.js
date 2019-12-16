@@ -93,7 +93,12 @@ class Line {
     );
   }
 
-  findPointFromStart(distance) {}
+  findPointFromStart(distance) {
+    const distanceRatio = distance / this.length;
+    const x = (1 - distanceRatio) * this.endA.x + distanceRatio * this.endB.x;
+    const y = (1 - distanceRatio) * this.endA.y + distanceRatio * this.endB.y;
+    return [x, y];
+  }
 }
 
 module.exports = Line;
