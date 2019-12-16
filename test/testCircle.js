@@ -40,5 +40,10 @@ describe("Circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
       assert.strictEqual(circle.area, 154);
     });
+
+    it("should give area 0 when finite radius is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      assert.strictEqual(circle.area, 154);
+    });
   });
 });
