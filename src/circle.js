@@ -24,6 +24,12 @@ class Circle {
   get perimeter() {
     return 2 * Math.PI * this.radius;
   }
+
+  hasPoint(point) {
+    const dx = point.x - this.centre.x;
+    const dy = point.y - this.centre.y;
+    return this.radius === Math.hypot(dx, dy);
+  }
 }
 
 module.exports = Circle;
