@@ -250,9 +250,15 @@ describe("Line", function() {
 
   describe("findPointFromStart", function() {
     it("should give point from start of a line when distance is given ", function() {
-      const line = new Line({ x: 6, y: 2 }, { x: 4, y: 1 });
-      assert.approximately(line.findPointFromStart(2)[0], 4, 1);
-      assert.approximately(line.findPointFromStart(2)[1], 2, 1);
+      const line = new Line({ x: 0, y: 0 }, { x: 6, y: 8 });
+      assert.deepStrictEqual(line.findPointFromStart(5), { x: 3, y: 4 });
+    });
+  });
+
+  describe("findPointFromEnd", function() {
+    it("should give point from End of a line when distance is given ", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 6, y: 8 });
+      assert.deepStrictEqual(line.findPointFromEnd(5), { x: 3, y: 4 });
     });
   });
 });
