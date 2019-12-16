@@ -32,9 +32,7 @@ class Line {
   }
 
   get length() {
-    const point1 = new Point(this.endA.x, this.endA.y);
-    const point2 = new Point(this.endB.x, this.endB.y);
-    return point1.findDistanceTo(point2);
+    return this.endA.findDistanceTo(this.endB);
   }
 
   get slope() {

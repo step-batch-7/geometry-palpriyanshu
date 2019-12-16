@@ -1,3 +1,5 @@
+"use strict";
+
 const Point = require("./point.js");
 
 class Circle {
