@@ -8,4 +8,12 @@ describe("Circle", function() {
       assert.strictEqual(circle.toString(), `[Circle @(0,0) radius 5]`);
     });
   });
+
+  describe("isEquals", function() {
+    it("should validate when two circles are equal", function() {
+      const circle1 = new Circle({ x: 0, y: 0 }, 5);
+      const circle2 = new Circle({ x: 0, y: 0 }, 5);
+      assert.ok(circle1.isEqual(circle2));
+    });
+  });
 });
