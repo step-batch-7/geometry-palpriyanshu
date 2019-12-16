@@ -2,7 +2,6 @@ const Point = require("./point.js");
 
 class Circle {
   constructor(centre, radius) {
-    this.PI = 22 / 7;
     this.centre = new Point(centre.x, centre.y);
     this.radius = radius;
   }
@@ -17,7 +16,11 @@ class Circle {
   }
 
   get area() {
-    return this.PI * this.radius ** 2;
+    return Math.PI * this.radius ** 2;
+  }
+
+  get perimeter() {
+    return 2 * Math.PI * this.radius;
   }
 }
 

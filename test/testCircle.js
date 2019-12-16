@@ -38,12 +38,24 @@ describe("Circle", function() {
   describe("area", function() {
     it("should give area of circle when finite radius is given", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
-      assert.strictEqual(circle.area, 154);
+      assert.approximately(circle.area, 154, 1);
     });
 
-    it("should give area 0 when finite radius is given", function() {
+    it("should give area 0 when radius 0 is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.strictEqual(circle.area, 0);
+    });
+  });
+
+  describe("perimeter", function() {
+    it("should give perimeter of circle when finite radius is given", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
-      assert.strictEqual(circle.area, 154);
+      assert.approximately(circle.perimeter, 44, 1);
+    });
+
+    it("should give area 0 when radius 0 is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.strictEqual(circle.perimeter, 0);
     });
   });
 });
