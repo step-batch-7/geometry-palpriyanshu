@@ -43,7 +43,7 @@ class Line {
   get length() {
     const point1 = new Point(this.endA.x, this.endA.y);
     const point2 = new Point(this.endB.x, this.endB.y);
-    return point1.findDistanceTo(this.endB);
+    return point1.findDistanceTo(point2);
   }
 
   get slope() {
@@ -92,6 +92,8 @@ class Line {
       (other.x === this.findX(other.y) || other.y === this.findY(other.x))
     );
   }
+
+  findPointFromStart(distance) {}
 }
 
 module.exports = Line;

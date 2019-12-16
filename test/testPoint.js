@@ -14,14 +14,20 @@ describe("Point", function() {
   describe("visit", function() {
     it("should give sum when add function reference is given", function() {
       const point = new Point(2, 3);
-      const add = (x, y) => x + y;
-      assert.strictEqual(point.visit(add), 5);
+      const action = (x, y) => x + y;
+      assert.strictEqual(point.visit(action), 5);
     });
 
     it("should give product when when mul function reference is given", function() {
       const point = new Point(2, 3);
-      const mul = (x, y) => x * y;
-      assert.strictEqual(point.visit(mul), 6);
+      const action = (x, y) => x * y;
+      assert.strictEqual(point.visit(action), 6);
+    });
+
+    it("should give NaN when action is not a instance of Function", function() {
+      const point = new Point(2, 3);
+      const action = "mul";
+      assert.isNaN(point.visit(action));
     });
   });
 
@@ -63,6 +69,12 @@ describe("Point", function() {
       const point1 = new Point(6, 4);
       const point2 = new Point(6, 4);
       assert.strictEqual(point1.findDistanceTo(point2), 0);
+    });
+
+    it("should give NaN when the object is not a instance of Point", function() {
+      const point1 = new Point(6, 4);
+      const point2 = { x: 6, y: 4 };
+      assert.isNaN(point1.findDistanceTo(point2));
     });
   });
 });

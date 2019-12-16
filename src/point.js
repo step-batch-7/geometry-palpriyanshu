@@ -10,6 +10,7 @@ class Point {
   }
 
   visit(action) {
+    if (!(action instanceof Function)) return NaN;
     return action(this.x, this.y);
   }
 
@@ -25,6 +26,7 @@ class Point {
   }
 
   findDistanceTo(other) {
+    if (!(other instanceof Point)) return NaN;
     const dx = other.x - this.x;
     const dy = other.y - this.y;
     return Math.hypot(dx, dy);
