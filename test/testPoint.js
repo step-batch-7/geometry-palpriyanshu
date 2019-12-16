@@ -23,12 +23,6 @@ describe("Point", function() {
       const action = (x, y) => x * y;
       assert.strictEqual(point.visit(action), 6);
     });
-
-    it("should give NaN when action is not a instance of Function", function() {
-      const point = new Point(2, 3);
-      const action = "mul";
-      assert.isNaN(point.visit(action));
-    });
   });
 
   describe("isEqualTo", function() {
@@ -77,6 +71,4 @@ describe("Point", function() {
       assert.isNaN(point1.findDistanceTo(point2));
     });
   });
-
-  
 });

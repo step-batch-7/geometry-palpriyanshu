@@ -10,7 +10,6 @@ class Point {
   }
 
   visit(action) {
-    if (!(action instanceof Function)) return NaN;
     return action(this.x, this.y);
   }
 
