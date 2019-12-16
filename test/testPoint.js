@@ -3,6 +3,7 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
 const Line = require("../src/line.js");
+const Circle = require("../src/circle.js");
 
 describe("Point", function() {
   describe("toString", function() {
@@ -72,11 +73,30 @@ describe("Point", function() {
       assert.isNaN(point1.findDistanceTo(point2));
     });
   });
+
   describe("isOn", function() {
-    it("should validate when point lies on the line", function() {
+    it("should validate when point lies on the line segment", function() {
       const point = new Point(2, 2);
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.ok(point.isOn(line));
+    });
+
+    it("should inValidate when point does not lies on the line segment", function() {
+      const point = new Point(2, 3);
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.notOk(point.isOn(line));
+    });
+
+    it("should validate when point lies on the circle's circumference", function() {
+      const point = new Point(0, 5);
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.ok(point.isOn(circle));
+    });
+
+    it("should inValidate when point does not lie on circle's circumference", function() {
+      const point = new Point(0, 6);
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.notOk(point.isOn(circle));
     });
   });
 });
