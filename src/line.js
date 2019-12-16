@@ -3,7 +3,7 @@
 const Point = require("../src/point.js");
 
 const isCoordinateInRange = function(coordinate, range) {
-  const [start, end] = range.sort();
+  const [start, end] = range.sort((a, b) => a - b);
   return coordinate >= start && coordinate <= end;
 };
 
