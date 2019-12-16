@@ -51,4 +51,18 @@ describe("Point", function() {
       assert.deepStrictEqual(point.clone(), { x: 2, y: 3 });
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should give distance between two distinct point", function() {
+      const point1 = new Point(6, 4);
+      const point2 = new Point(2, 1);
+      assert.strictEqual(point1.findDistanceTo(point2), 5);
+    });
+
+    it("should give distance 0 between two same point", function() {
+      const point1 = new Point(6, 4);
+      const point2 = new Point(6, 4);
+      assert.strictEqual(point1.findDistanceTo(point2), 0);
+    });
+  });
 });
