@@ -1,3 +1,5 @@
+"use strict";
+
 const Point = require("../src/point.js");
 
 const areEqualPoints = function(point1, point2) {
@@ -7,8 +9,15 @@ const areEqualPoints = function(point1, point2) {
 };
 
 const isCoordinateInRange = function(coordinate, range) {
-  [start, end] = range.sort();
+  const [start, end] = range.sort();
   return coordinate >= start && coordinate <= end;
+};
+
+const arePointsCollinear = function(point1, point2, point3) {
+  const [x1, y1] = [point1.x, point1.y];
+  const [x2, y2] = [point2.x, point2.y];
+  const [x3, y3] = [point3.x, point3.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) === 0;
 };
 
 class Line {
@@ -38,20 +47,24 @@ class Line {
   }
 
   get slope() {
-    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    return dy / dx == -Infinity ? Infinity : dy / dx;
   }
 
   isParallelTo(other) {
-    if (!(other instanceof Line)) {
-      return false;
-    }
-    return this.endA.y !== other.endA.y && this.slope == other.slope;
+    if (!(other instanceof Line)) return false;
+    return (
+      !arePointsCollinear(this.endA, other.endA, other.endB) &&
+      this.slope == other.slope
+    );
   }
 
   findX(y) {
     if (!isCoordinateInRange(y, [this.endA.y, this.endB.y])) {
       return NaN;
     }
+    if (this.slope == 0) return this.endA.x;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
@@ -59,6 +72,7 @@ class Line {
     if (!isCoordinateInRange(x, [this.endA.x, this.endB.x])) {
       return NaN;
     }
+    if (this.slope === Infinity) return this.endA.y;
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
 

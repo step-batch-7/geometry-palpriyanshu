@@ -1,3 +1,5 @@
+"use strict";
+
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
 
@@ -10,16 +12,16 @@ describe("Point", function() {
   });
 
   describe("visit", function() {
-    it("should visit to the add function when add function reference is given", function() {
+    it("should give sum when add function reference is given", function() {
       const point = new Point(2, 3);
-      const actual = point.visit((x, y) => x + y);
-      assert.strictEqual(actual, 5);
+      const add = (x, y) => x + y;
+      assert.strictEqual(point.visit(add), 5);
     });
 
-    it("should visit to the mul function when mul function reference is given", function() {
+    it("should give product when when mul function reference is given", function() {
       const point = new Point(2, 3);
-      const actual = point.visit((x, y) => x * y);
-      assert.strictEqual(actual, 6);
+      const mul = (x, y) => x * y;
+      assert.strictEqual(point.visit(mul), 6);
     });
   });
 
@@ -39,12 +41,6 @@ describe("Point", function() {
     it("should invalidate when two objects are not instance of Point", function() {
       const point1 = new Point(2, 3);
       const point2 = { x: 3, y: 3 };
-      assert.notOk(point1.isEqualTo(point2));
-    });
-
-    it("should invalidate when two objects are not same", function() {
-      const point1 = new Point(2, 3);
-      const point2 = ``;
       assert.notOk(point1.isEqualTo(point2));
     });
   });

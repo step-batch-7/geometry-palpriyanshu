@@ -1,3 +1,5 @@
+"use strict";
+
 const assert = require("chai").assert;
 const Line = require("../src/line.js");
 const Point = require("../src/point.js");
@@ -54,30 +56,51 @@ describe("Line", function() {
   });
 
   describe("isParallelTo", function() {
-    it("should validate when two lines are parallel", function() {
-      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
-      const line2 = new Line({ x: 4, y: 4 }, { x: 2, y: 2 });
+    it("should validate when two horizontal lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 3, y: 1 });
+      const line2 = new Line({ x: 1, y: 4 }, { x: 3, y: 4 });
       const actual = line1.isParallelTo(line2);
       assert.ok(actual);
     });
 
-    it("should invalidate when two lines are not isParallelTo", function() {
-      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
-      const line2 = new Line({ x: -4, y: 4 }, { x: -2, y: 2 });
+    it("should validate when two vertical lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 1, y: 5 });
+      const line2 = new Line({ x: 3, y: 1 }, { x: 3, y: 5 });
+      const actual = line1.isParallelTo(line2);
+      assert.ok(actual);
+    });
+
+    it("should validate when two inclined lines are parallel", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const line2 = new Line({ x: 2, y: 1 }, { x: 6, y: 5 });
+      const actual = line1.isParallelTo(line2);
+      assert.ok(actual);
+    });
+
+    it("should invalidate when two Horizontal lines are coincides", function() {
+      const line1 = new Line({ x: 1, y: 5 }, { x: 8, y: 5 });
+      const line2 = new Line({ x: 3, y: 5 }, { x: 6, y: 5 });
       const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
 
-    it("should invalidate for two coincident lines ", function() {
+    it("should invalidate when two Vertical lines are coincides", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 1, y: 8 });
+      const line2 = new Line({ x: 1, y: 3 }, { x: 1, y: 5 });
+      const actual = line1.isParallelTo(line2);
+      assert.notOk(actual);
+    });
+
+    it("should invalidate when two inclined lines are coincided ", function() {
       const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const line2 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
 
-    it("should invalidate for two collinear", function() {
-      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
-      const line2 = new Line({ x: 12, y: 5 }, { x: 10, y: 3 });
+    it("should invalidate for two collinear lines", function() {
+      const line1 = new Line({ x: 8, y: 5 }, { x: 6, y: 5 });
+      const line2 = new Line({ x: 12, y: 5 }, { x: 10, y: 5 });
       const actual = line1.isParallelTo(line2);
       assert.notOk(actual);
     });
@@ -96,12 +119,12 @@ describe("Line", function() {
   });
 
   describe("slope", function() {
-    it("should give positive slope of a line when change in both ordinates and abscissa is positive", function() {
+    it("should calculate positive slope of a line", function() {
       const line = new Line({ x: 8, y: 5 }, { x: 6, y: 3 });
       assert.strictEqual(line.slope, 1);
     });
 
-    it("should give negative slope of a line when either change in ordinates or change in abscissa is negative", function() {
+    it("should calculate negative slope of a line", function() {
       const line = new Line({ x: 8, y: 3 }, { x: 6, y: 5 });
       assert.strictEqual(line.slope, -1);
     });
@@ -111,14 +134,24 @@ describe("Line", function() {
       assert.strictEqual(line.slope, 1.0);
     });
 
-    it("should give 0 for a line parallel to X-axis", function() {
+    it("should give 0 for a line parallel to X-axis and in leftWard direction", function() {
       const line = new Line({ x: 8, y: 5 }, { x: 6, y: 5 });
-      assert.strictEqual(line.slope, -0);
+      assert.strictEqual(line.slope, 0);
     });
 
-    it("should give infinity for a line parallel to Y-axis", function() {
+    it("should give 0 for a line parallel to X-axis and in rightWard direction", function() {
+      const line = new Line({ x: 6, y: 5 }, { x: 8, y: 5 });
+      assert.strictEqual(line.slope, 0);
+    });
+
+    it("should give infinity for a line parallel to Y-axis and in downWard direction", function() {
       const line = new Line({ x: 8, y: 5 }, { x: 8, y: 3 });
-      assert.strictEqual(line.slope, -Infinity);
+      assert.strictEqual(line.slope, Infinity);
+    });
+
+    it("should give infinity for a line parallel to Y-axis and in upWard direction", function() {
+      const line = new Line({ x: 8, y: 3 }, { x: 8, y: 5 });
+      assert.strictEqual(line.slope, Infinity);
     });
 
     it("should give not a number when both end points are same", function() {
@@ -142,6 +175,11 @@ describe("Line", function() {
       const line = new Line({ x: 4, y: 4 }, { x: 6, y: 6 });
       assert.isNaN(line.findX(2));
     });
+
+    it("should give x of start point if there are multiple x values available for a given y", function() {
+      const line = new Line({ x: -1, y: 1 }, { x: 1, y: 1 });
+      assert.strictEqual(line.findX(1), -1);
+    });
   });
 
   describe("findY", function() {
@@ -158,6 +196,11 @@ describe("Line", function() {
     it("should give NaN if given point is outside the line Segment", function() {
       const line = new Line({ x: 4, y: 4 }, { x: 6, y: 6 });
       assert.isNaN(line.findY(2));
+    });
+
+    it("should give y of start point if there are multiple y values available for a given y", function() {
+      const line = new Line({ x: 1, y: 5 }, { x: 1, y: -1 });
+      assert.strictEqual(line.findY(1), 5);
     });
   });
 
