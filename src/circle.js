@@ -30,6 +30,12 @@ class Circle {
     const dy = point.y - this.centre.y;
     return this.radius === Math.hypot(dx, dy);
   }
+
+  moveTo(point) {
+    this.centre.x = point.x;
+    this.centre.y = point.y;
+    return new Circle(this.centre, this.radius);
+  }
 }
 
 module.exports = Circle;

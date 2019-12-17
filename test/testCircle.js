@@ -73,4 +73,14 @@ describe("Circle", function() {
       assert.notOk(circle.hasPoint(point));
     });
   });
+
+  describe("moveTo", function() {
+    it("should move the circle from one point to other", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.deepStrictEqual(
+        circle.moveTo({ x: 1, y: 1 }),
+        new Circle({ x: 1, y: 1 }, 5)
+      );
+    });
+  });
 });
