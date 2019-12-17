@@ -75,7 +75,7 @@ describe("Circle", function() {
   });
 
   describe("moveTo", function() {
-    it("should move the circle from one point to other", function() {
+    it("should move the circle to the given point", function() {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       assert.deepStrictEqual(
         circle.moveTo({ x: 1, y: 1 }),

@@ -32,8 +32,7 @@ class Circle {
   }
 
   moveTo(point) {
-    this.centre.x = point.x;
-    this.centre.y = point.y;
+    this.centre = new Point(point.x, point.y);
     return new Circle(this.centre, this.radius);
   }
 }
