@@ -26,10 +26,12 @@ class Rectangle {
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    const isDiagonalEqual = this.diagonal.length === other.diagonal.length;
+    const isDiagonalEqual = this.diagonal.midPoint.isEqualTo(
+      other.diagonal.midPoint
+    );
     return (
-      this.side1.isEqualTo(other.side1) &&
-      this.side2.isEqualTo(other.side2) &&
+      this.side1.length == other.side1.length &&
+      this.side2.length == other.side2.length &&
       isDiagonalEqual
     );
   }

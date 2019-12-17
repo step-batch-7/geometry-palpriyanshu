@@ -14,9 +14,24 @@ describe("Rectangle", function() {
   });
 
   describe("area", function() {
-    it("should give area of a rectangle", function() {
+    it("should give area of a rectangle when a diagonal is given", function() {
       const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
       assert.strictEqual(rectangle.area, 25);
+    });
+
+    it("should give 0 when diagonal is a horizontal line", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 4, y: 1 });
+      assert.deepStrictEqual(rectangle.area, 0);
+    });
+
+    it("should give 0 when diagonal is a vertical line", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 4 });
+      assert.deepStrictEqual(rectangle.area, 0);
+    });
+
+    it("should give 0 when diagonal has same endPoints", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.deepStrictEqual(rectangle.area, 0);
     });
   });
 
