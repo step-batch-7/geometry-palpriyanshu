@@ -26,14 +26,17 @@ class Circle {
   }
 
   hasPoint(point) {
-    const dx = point.x - this.centre.x;
-    const dy = point.y - this.centre.y;
-    return this.radius === Math.hypot(dx, dy);
+    if (!(point instanceof Point)) return false;
+    return this.radius === this.centre.findDistanceTo(point);
   }
 
   moveTo(point) {
-    this.centre = new Point(point.x, point.y);
-    return new Circle(this.centre, this.radius);
+    return new Circle(point, this.radius);
+  }
+
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    return this.centre.findDistanceTo(point) <= this.radius;
   }
 }
 

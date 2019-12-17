@@ -72,6 +72,12 @@ describe("Circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       assert.notOk(circle.hasPoint(point));
     });
+
+    it("should inValidate when point is not a instance of Class Point", function() {
+      const point = { x: 0, y: 5 };
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.notOk(circle.hasPoint(point));
+    });
   });
 
   describe("moveTo", function() {
@@ -81,6 +87,32 @@ describe("Circle", function() {
         circle.moveTo({ x: 1, y: 1 }),
         new Circle({ x: 1, y: 1 }, 5)
       );
+    });
+  });
+
+  describe("covers", function() {
+    it("should validate when given point is inside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 2);
+      assert.ok(circle.covers(point));
+    });
+
+    it("should validate when given point is on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      assert.ok(circle.covers(point));
+    });
+
+    it("should inValidate when given point is outside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 6);
+      assert.notOk(circle.covers(point));
+    });
+
+    it("should inValidate when given point is not a instance of Point class", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = { x: 0, y: 6 };
+      assert.notOk(circle.covers(point));
     });
   });
 });
