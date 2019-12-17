@@ -19,4 +19,11 @@ describe("Rectangle", function() {
       assert.strictEqual(rectangle.area, 25);
     });
   });
+
+  describe("perimeter", function() {
+    it("should give perimeter of a rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      assert.strictEqual(rectangle.perimeter, 20);
+    });
+  });
 });

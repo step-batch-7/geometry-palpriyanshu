@@ -2,20 +2,31 @@
 const Point = require("../src/point.js");
 
 class Rectangle {
-  constructor(endA, endB) {
+  #endB;
+  constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
-    this.endB = new Point(endB.x, endB.y);
+    this.endC = new Point(endC.x, endC.y);
+    this.#endB = new Point(this.endC.x, this.endA.y);
   }
 
   toString() {
-    return `[Rectangle (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
+    return `[Rectangle (${this.endA.x},${this.endA.y}) to (${this.endC.x},${this.endC.y})]`;
+  }
+
+  get length() {
+    return this.endA.findDistanceTo(this.#endB);
+  }
+
+  get width() {
+    return this.endC.findDistanceTo(this.#endB);
   }
 
   get area() {
-    const point = new Point(this.endB.x, this.endA.y);
-    const length = this.endA.findDistanceTo(point);
-    const width = this.endB.findDistanceTo(point);
-    return length * width;
+    return this.length * this.width;
+  }
+
+  get perimeter() {
+    return 2 * (this.length + this.width);
   }
 }
 
