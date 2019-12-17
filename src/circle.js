@@ -12,7 +12,7 @@ class Circle {
     return `[Circle @(${this.centre.x},${this.centre.y}) radius ${this.radius}]`;
   }
 
-  isEqual(other) {
+  isEqualTo(other) {
     if (!(other instanceof Circle)) return NaN;
     return this.centre.isEqualTo(other.centre) && this.radius === other.radius;
   }
