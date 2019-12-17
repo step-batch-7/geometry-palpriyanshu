@@ -26,4 +26,12 @@ describe("Rectangle", function() {
       assert.strictEqual(rectangle.perimeter, 20);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should validate when when diagonal and mid-point of diagonal are equal ", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      const rectangle2 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+  });
 });
