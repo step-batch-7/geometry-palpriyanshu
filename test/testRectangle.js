@@ -43,10 +43,24 @@ describe("Rectangle", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should validate when when diagonal and mid-point of diagonal are equal ", function() {
+    it("should validate when when diagonal is equal ", function() {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
       const rectangle2 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
       assert.ok(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should inValidate when when diagonal is not equal ", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      const rectangle2 = new Rectangle({ x: 0, y: 0 }, { x: 4, y: 4 });
+      assert.notOk(rectangle1.isEqualTo(rectangle2));
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should validate when rectangle has point", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 5 });
+      const point = new Point(0, 2);
+      assert.ok(rectangle.hasPoint(point));
     });
   });
 });
