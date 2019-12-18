@@ -268,6 +268,11 @@ describe("Line", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 6, y: 8 });
       assert.isNull(line.findPointFromStart(15));
     });
+
+    it("should give null when distance is less than 0", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 6, y: 8 });
+      assert.isNull(line.findPointFromStart(15));
+    });
   });
 
   describe("findPointFromEnd", function() {

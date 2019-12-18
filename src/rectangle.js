@@ -37,7 +37,7 @@ class Rectangle {
 
   get perimeter() {
     const length = getSides(this.endA, this.endC)[0].length;
-    const width = getSides(this.endA, this.endC)[0].length;
+    const width = getSides(this.endA, this.endC)[1].length;
     return 2 * (length + width);
   }
 

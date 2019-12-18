@@ -13,7 +13,7 @@ class Circle {
   }
 
   isEqualTo(other) {
-    if (!(other instanceof Circle)) return NaN;
+    if (!(other instanceof Circle)) return false;
     return this.centre.isEqualTo(other.centre) && this.radius === other.radius;
   }
 
