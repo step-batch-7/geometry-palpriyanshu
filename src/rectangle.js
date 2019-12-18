@@ -2,6 +2,11 @@
 const Point = require("../src/point.js");
 const Line = require("../src/line.js");
 
+const isCoordinateInRange = function(coordinate, range) {
+  const [start, end] = range.sort((a, b) => a - b);
+  return coordinate >= start && coordinate <= end;
+};
+
 class Rectangle {
   constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
@@ -44,6 +49,14 @@ class Rectangle {
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
     return this.sides.some(line => point.isOn(line));
+  }
+
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    return (
+      isCoordinateInRange(point.x, [this.endA.x, this.endC.x]) &&
+      isCoordinateInRange(point.y, [this.endA.y, this.endC.y])
+    );
   }
 }
 
