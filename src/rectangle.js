@@ -30,15 +30,13 @@ class Rectangle {
   }
 
   get area() {
-    const length = getSides(this.endA, this.endC)[0].length;
-    const width = getSides(this.endA, this.endC)[1].length;
-    return length * width;
+    const [side1, side2] = getSides(this.endA, this.endC);
+    return side1.length * side2.length;
   }
 
   get perimeter() {
-    const length = getSides(this.endA, this.endC)[0].length;
-    const width = getSides(this.endA, this.endC)[1].length;
-    return 2 * (length + width);
+    const [side1, side2] = getSides(this.endA, this.endC);
+    return 2 * (side1.length + side2.length);
   }
 
   isEqualTo(other) {
