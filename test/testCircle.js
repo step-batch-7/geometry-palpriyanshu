@@ -97,10 +97,10 @@ describe("Circle", function() {
       assert.ok(circle.covers(point));
     });
 
-    it("should validate when given point is on the circle", function() {
+    it("should inValidate when given point is on the circumference of circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const point = new Point(0, 5);
-      assert.ok(circle.covers(point));
+      assert.notOk(circle.covers(point));
     });
 
     it("should inValidate when given point is outside the circle", function() {

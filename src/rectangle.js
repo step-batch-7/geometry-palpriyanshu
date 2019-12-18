@@ -4,7 +4,7 @@ const Line = require("../src/line.js");
 
 const isCoordinateInRange = function(coordinate, range) {
   const [start, end] = range.sort((a, b) => a - b);
-  return coordinate >= start && coordinate <= end;
+  return coordinate > start && coordinate < end;
 };
 
 const getSides = function(vertexA, vertexC) {
