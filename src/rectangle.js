@@ -7,53 +7,56 @@ const isCoordinateInRange = function(coordinate, range) {
   return coordinate >= start && coordinate <= end;
 };
 
-const getSides = function(endA, endC) {
-  const endB = { x: endC.x, y: endA.y };
-  const endD = { x: endA.x, y: endC.y };
-  const AB = new Line(endA, endB);
-  const BC = new Line(endB, endC);
-  const CD = new Line(endC, endD);
-  const AD = new Line(endA, endD);
+const getSides = function(vertexA, vertexC) {
+  const vertexB = { x: vertexC.x, y: vertexA.y };
+  const vertexD = { x: vertexA.x, y: vertexC.y };
+  const AB = new Line(vertexA, vertexB);
+  const BC = new Line(vertexB, vertexC);
+  const CD = new Line(vertexC, vertexD);
+  const AD = new Line(vertexA, vertexD);
   return [AB, BC, CD, AD];
 };
 
 class Rectangle {
-  constructor(endA, endC) {
-    this.endA = new Point(endA.x, endA.y);
-    this.endC = new Point(endC.x, endC.y);
+  constructor(vertexA, vertexC) {
+    this.vertexA = new Point(vertexA.x, vertexA.y);
+    this.vertexC = new Point(vertexC.x, vertexC.y);
   }
 
   toString() {
-    const point1 = `(${this.endA.x},${this.endA.y})`;
-    const point2 = `(${this.endC.x},${this.endC.y})`;
+    const point1 = `(${this.vertexA.x},${this.vertexA.y})`;
+    const point2 = `(${this.vertexC.x},${this.vertexC.y})`;
     return `[Rectangle ${point1} to ${point2}]`;
   }
 
   get area() {
-    const [side1, side2] = getSides(this.endA, this.endC);
+    const [side1, side2] = getSides(this.vertexA, this.vertexC);
     return side1.length * side2.length;
   }
 
   get perimeter() {
-    const [side1, side2] = getSides(this.endA, this.endC);
+    const [side1, side2] = getSides(this.vertexA, this.vertexC);
     return 2 * (side1.length + side2.length);
   }
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    return this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC);
+    return (
+      this.vertexA.isEqualTo(other.vertexA) &&
+      this.vertexC.isEqualTo(other.vertexC)
+    );
   }
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    return getSides(this.endA, this.endC).some(line => point.isOn(line));
+    return getSides(this.vertexA, this.vertexC).some(line => point.isOn(line));
   }
 
   covers(point) {
     if (!(point instanceof Point)) return false;
     return (
-      isCoordinateInRange(point.x, [this.endA.x, this.endC.x]) &&
-      isCoordinateInRange(point.y, [this.endA.y, this.endC.y])
+      isCoordinateInRange(point.x, [this.vertexA.x, this.vertexC.x]) &&
+      isCoordinateInRange(point.y, [this.vertexA.y, this.vertexC.y])
     );
   }
 }
